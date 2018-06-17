@@ -8,18 +8,16 @@ int main(){
 int n,m,t;
 string s;
 C(n);
-cin.ignore(1);
+cin.ignore();
 FOR(0, n){
     getline(cin,s);
-    m=s.length();
+    m=s.size();
     FOR(0, m){
         if(isalpha(s[i])) 
             s[i]+=3;
     }
     FOR(0, m/2){
-      t=s[i];
-      s[i]=s[m-i-1];
-      s[m-1-i]=t;
+        swap(s[i], s[m-i-1]);
     }
     FOR(m/2, m)
         s[i]-=1;
