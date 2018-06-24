@@ -1,4 +1,4 @@
-set tabstop=2 shiftwidth=3
+set tabstop=2 
 set number
 set showcmd
 set cursorline
@@ -27,7 +27,7 @@ set nowb
 set noswapfile
 set expandtab
 set smarttab
-set shiftwidth=2
+set shiftwidth=3
 set lbr
 set tw=500
 
