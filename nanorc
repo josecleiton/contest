@@ -274,7 +274,7 @@ include "/usr/share/nano/*.nanorc"
 set nowrap
 set casesensitive
 set historylog
-set tabstospaces
+#set tabstospaces
 set mouse
 set tabsize 3
 set autoindent
