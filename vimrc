@@ -14,11 +14,6 @@ set encoding=utf-8
 syntax enable
 syntax on
 filetype plugin indent on
-try
-	colorscheme desert
-catch
-endtry
-
 set background=dark
 set encoding=utf8
 set ffs=unix,dos,mac
