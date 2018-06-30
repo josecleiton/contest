@@ -13,6 +13,11 @@
 #define m(x,y) min(x, y)
 #define c(x) cout<<x<<endl
 #define C(x) cin>>x
+#define set(a,b) cout.precision(a); cout<<fixed<<b<<endl
+#define pcs(a) cout.precision(a)
+#define fx(a) fixed<<a
+#define gl(s) getline(cin,s)
+#define pb(a) push_back(a)
 
 using namespace std;
 
