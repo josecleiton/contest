@@ -16,6 +16,7 @@
 #define set(a,b) cout.precision(a); cout<<fixed<<b<<endl
 #define pcs(a) cout.precision(a)
 #define fx(a) fixed<<a
+#define cfx(a) cout<<fixed<<a<<endl
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
 
