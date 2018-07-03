@@ -18,3 +18,11 @@
 Crescente:  `sort(v.begin(),v.end())`
 
 Decrescente: `sort(v.rbegin(),v.rend())`
+
+### Soma de todos os elementos
+
+`accumulate(v.begin(),v.end(),0)` // 0 é o valor inicial da soma
+
+## Genericos
+
+Troca entre dois objetos `swap(a,b)`
