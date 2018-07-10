@@ -24,7 +24,13 @@ typedef long long ll;
 typedef unsigned long long ull;
 
 int main(){
-int n,m,p,q,x,y,a,b,c,d,e,f;
+vector<int> v;
+int n;
+cin>>n;
+FOR(1000){
+    v.pb(i%n);
+    printf("N[%d] = %d\n", i,v[i]);
+}
 
 return 0;
 }

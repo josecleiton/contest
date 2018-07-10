@@ -20,11 +20,16 @@
 #define pb(a) push_back(a)
 
 using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
 
 int main(){
-int n,m,p,q,x,y,a,b,c,d,e,f;
-
+vector<double> v;
+double n;
+pcs(1);
+FOR(100){
+    cin>>n;
+    //v.pb(n);
+    if(n<=10)
+        cout<<"A["<<i<<"] = "<<fx(n)<<endl;
+}
 return 0;
 }

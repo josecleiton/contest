@@ -24,7 +24,16 @@ typedef long long ll;
 typedef unsigned long long ull;
 
 int main(){
-int n,m,p,q,x,y,a,b,c,d,e,f;
-
+double m[12][12];
+double s=0.0f;
+char ch;
+cin>>ch;
+FORM(12,12){
+    cin>>m[i][j];
+    if(i+j>12-1) s+=m[i][j];
+}
+pcs(1);
+if(ch=='S') cout<<fx(s)<<endl;
+else if (ch=='M') cout<<fx(s/((11*12)/2.0))<<endl;
 return 0;
 }

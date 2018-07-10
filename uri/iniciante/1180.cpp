@@ -24,7 +24,15 @@ typedef long long ll;
 typedef unsigned long long ull;
 
 int main(){
-int n,m,p,q,x,y,a,b,c,d,e,f;
-
+int n,h,l,p;
+cin>>n;
+FOR(n){
+    cin>>h;
+    if(h<l || !i){
+        l=h;
+        p=i;
+    }
+}
+cout<<"Menor valor: "<<l<<endl<<"Posicao: "<<p<<endl;
 return 0;
 }

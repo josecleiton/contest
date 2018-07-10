@@ -24,7 +24,22 @@ typedef long long ll;
 typedef unsigned long long ull;
 
 int main(){
-int n,m,p,q,x,y,a,b,c,d,e,f;
-
+vector<ull> v;
+ull n,k,j;
+cin>>n;
+v.resize(100);
+v[0] = (ull) 0;
+v[1] = (ull) 1;
+FOR(n){
+    cin>>k;
+    if(k>1){
+        for(int i=2; i<=k; i++){
+            if(i>=2){
+                v[i]=v[i-2]+v[i-1];
+            }
+        }
+    }
+    cout<<"Fib("<<k<<") = "<<v[k]<<endl;
+}
 return 0;
 }

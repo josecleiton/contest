@@ -20,11 +20,23 @@
 #define pb(a) push_back(a)
 
 using namespace std;
-typedef long long ll;
-typedef unsigned long long ull;
 
 int main(){
-int n,m,p,q,x,y,a,b,c,d,e,f;
+vector<int> v;
+int n;
+FOR(20){
+    cin>>n;
+    v.pb(n);
+}
+int h;
+FOR(20){
+    if(i<20/2){
+        h=v[i];
+        v[i]=v[20-1-i];
+        v[20-1-i]=h;
+    }
+    cout<<"N["<<i<<"] = "<<v[i]<<endl;
+}
 
 return 0;
 }

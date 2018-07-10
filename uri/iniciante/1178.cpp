@@ -24,7 +24,15 @@ typedef long long ll;
 typedef unsigned long long ull;
 
 int main(){
-int n,m,p,q,x,y,a,b,c,d,e,f;
+vector<double> v;
+double n;
+cin>>n;
+v.pb(n);
+printf("N[0] = %.4lf\n", v[0]);
+FORT(1, 100){
+    v.pb(v[i-1]/(double)2);
+    printf("N[%d] = %.4lf\n", i,v[i]);
+}
 
 return 0;
 }

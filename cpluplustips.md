@@ -26,3 +26,11 @@ Decrescente: `sort(v.rbegin(),v.rend())`
 ## Genericos
 
 Troca entre dois objetos `swap(a,b)`
+Number of digits in N = `floor(log10(N)) + 1;`
+
+## Matrizes
+diagonal `i==j`
+acima da diagonal `j>i`
+abaixo da diagonal `i>j`
+acima da diagonal sec `i+j<N-1`
+abaixo da diagonal sec `i+j>N-1`

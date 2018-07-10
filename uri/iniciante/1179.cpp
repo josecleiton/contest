@@ -23,8 +23,25 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
-int main(){
-int n,m,p,q,x,y,a,b,c,d,e,f;
+void print (vector<int> a, size_t b, bool par){
+    FOR(b){
+        if(par) printf("par[%d] = %d\n",i,a[i]);
+        else printf("impar[%d] = %d\n",i,a[i]);
+    }
+}
 
+int main(){
+vector<int> p, q;
+p.resize(5);
+q.resize(5);
+int j,k;
+k=j=0;
+for(int i=0,n; i<15; i++){
+    cin>>n;
+    if(n&1){
+        puts("impar");
+    }
+    else puts("par");
+}
 return 0;
 }
