@@ -23,47 +23,24 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
-void print (vector<int> a, size_t b, bool par){
-    FOR(b){
-        if(par) printf("par[%d] = %d\n",i,a[i]);
-        else printf("impar[%d] = %d\n",i,a[i]);
-    }
-}
+typedef struct in{
+    char m[100];
+    double s;
+} In;
 
 int main(){
-int j,k;
-vector <int> impar, par;
-impar.resize(5);
-par.resize(5);
-k=j=0;
-for(int i=0,n; i<15; i++){
+    int n;
     cin>>n;
-    if(n&1){
-        impar[k%5] = n;
-        k++;
-    }
-    else{
-        par[j%5] = n;
-        j++;
-    }
-    if (k && !(k%5)){
-        FOR(5){
-            printf("impar[%d] = %d\n",i,impar[i]);
+    In p[n];
+    int m = 0;
+    double r = 0.0f;
+    FOR(n){
+        scanf("%s %lf", (p[i].m), &(p[i].s));
+        if(p[i].s>r){
+            m=i;
+            r=p[i].s;
         }
-        k=0;
     }
-    if(j && !(j%5)){
-        FOR(5){
-            printf("par[%d] = %d\n",i,par[i]);
-        }
-        j=0;    
-    }
-}
-FOR(k){
-    printf("impar[%d] = %d\n",i,impar[i]);
-}
-FOR(j){
-    printf("par[%d] = %d\n",i,par[i]);
-}
-return 0;
+    if(p[m].s>=8) cout<<p[m].m<<endl;
+    else cout<<"Minimum note not reached"<<endl;
 }

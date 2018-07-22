@@ -23,47 +23,28 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
-void print (vector<int> a, size_t b, bool par){
-    FOR(b){
-        if(par) printf("par[%d] = %d\n",i,a[i]);
-        else printf("impar[%d] = %d\n",i,a[i]);
-    }
-}
-
 int main(){
-int j,k;
-vector <int> impar, par;
-impar.resize(5);
-par.resize(5);
-k=j=0;
-for(int i=0,n; i<15; i++){
-    cin>>n;
-    if(n&1){
-        impar[k%5] = n;
-        k++;
-    }
-    else{
-        par[j%5] = n;
-        j++;
-    }
-    if (k && !(k%5)){
-        FOR(5){
-            printf("impar[%d] = %d\n",i,impar[i]);
+    string s;
+    while(cin>>s){
+        if(s.front()>='7'){
+            int lim = 8*60;
+            int r = 60;
+            FOR(s.length()){
+                switch (i){
+                    case 0:
+                        r+=(s.at(i)-'0')*60;
+                        break;
+                    case 2:
+                        r+=(s.at(i)-'0')*10;
+                        break;
+                    case 3:
+                        r+=(s.at(i)-'0');
+                        break;
+                }
+            }
+            cout<<"Atraso maximo: "<<abs(lim-r)<<endl;
         }
-        k=0;
+        else cout<<"Atraso maximo: 0\n";
     }
-    if(j && !(j%5)){
-        FOR(5){
-            printf("par[%d] = %d\n",i,par[i]);
-        }
-        j=0;    
-    }
-}
-FOR(k){
-    printf("impar[%d] = %d\n",i,impar[i]);
-}
-FOR(j){
-    printf("par[%d] = %d\n",i,par[i]);
-}
-return 0;
+    return 0;
 }

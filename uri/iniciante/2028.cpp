@@ -23,47 +23,34 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
-void print (vector<int> a, size_t b, bool par){
-    FOR(b){
-        if(par) printf("par[%d] = %d\n",i,a[i]);
-        else printf("impar[%d] = %d\n",i,a[i]);
-    }
-}
-
 int main(){
-int j,k;
-vector <int> impar, par;
-impar.resize(5);
-par.resize(5);
-k=j=0;
-for(int i=0,n; i<15; i++){
-    cin>>n;
-    if(n&1){
-        impar[k%5] = n;
-        k++;
-    }
-    else{
-        par[j%5] = n;
-        j++;
-    }
-    if (k && !(k%5)){
-        FOR(5){
-            printf("impar[%d] = %d\n",i,impar[i]);
+    int t;
+    int K = 1;
+    while(cin>>t){
+        int el = 0;
+        string s;
+        for(int i=0; i<t+1; i++){
+            if(i<2){
+                s.pb(i+'0');
+                if(i!=t)s.pb(' ');
+                el++;
+            }
+            else{
+                for(int j=0; j<i; j++){
+                    stringstream temp;
+                    temp<<i;
+                    s+=temp.str();
+                    s.pb(' ');
+                    el++; 
+                }
+            }
         }
-        k=0;
+        if(!isdigit(s.back())) s.back()='\n';
+        else s.pb('\n');
+        cout<<"Caso "<<K++<<": "<<el<<" numero";
+        if(el>1)cout<<"s";
+        cout<<endl;
+        cout<<s<<endl;
     }
-    if(j && !(j%5)){
-        FOR(5){
-            printf("par[%d] = %d\n",i,par[i]);
-        }
-        j=0;    
-    }
-}
-FOR(k){
-    printf("impar[%d] = %d\n",i,impar[i]);
-}
-FOR(j){
-    printf("par[%d] = %d\n",i,par[i]);
-}
-return 0;
+    return 0;
 }

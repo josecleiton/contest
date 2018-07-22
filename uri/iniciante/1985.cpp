@@ -23,47 +23,22 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
-void print (vector<int> a, size_t b, bool par){
-    FOR(b){
-        if(par) printf("par[%d] = %d\n",i,a[i]);
-        else printf("impar[%d] = %d\n",i,a[i]);
-    }
-}
+typedef struct in{
+    char m[100];
+    double s;
+} In;
 
 int main(){
-int j,k;
-vector <int> impar, par;
-impar.resize(5);
-par.resize(5);
-k=j=0;
-for(int i=0,n; i<15; i++){
+    double v[5] = {1.50,2.50,3.50,4.50,5.50};
+    int n;
+    double sum = 0.0f;
+    pcs(2);
     cin>>n;
-    if(n&1){
-        impar[k%5] = n;
-        k++;
+    FOR(n){
+        string s;
+        int k;
+        cin>>s>>k;
+        sum+=v[s.back() - '0' - 1] * k;
     }
-    else{
-        par[j%5] = n;
-        j++;
-    }
-    if (k && !(k%5)){
-        FOR(5){
-            printf("impar[%d] = %d\n",i,impar[i]);
-        }
-        k=0;
-    }
-    if(j && !(j%5)){
-        FOR(5){
-            printf("par[%d] = %d\n",i,par[i]);
-        }
-        j=0;    
-    }
-}
-FOR(k){
-    printf("impar[%d] = %d\n",i,impar[i]);
-}
-FOR(j){
-    printf("par[%d] = %d\n",i,par[i]);
-}
-return 0;
+    cout<<fixed<<sum<<endl;
 }

@@ -23,47 +23,17 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
-void print (vector<int> a, size_t b, bool par){
-    FOR(b){
-        if(par) printf("par[%d] = %d\n",i,a[i]);
-        else printf("impar[%d] = %d\n",i,a[i]);
-    }
-}
-
 int main(){
-int j,k;
-vector <int> impar, par;
-impar.resize(5);
-par.resize(5);
-k=j=0;
-for(int i=0,n; i<15; i++){
-    cin>>n;
-    if(n&1){
-        impar[k%5] = n;
-        k++;
-    }
-    else{
-        par[j%5] = n;
-        j++;
-    }
-    if (k && !(k%5)){
-        FOR(5){
-            printf("impar[%d] = %d\n",i,impar[i]);
-        }
-        k=0;
-    }
-    if(j && !(j%5)){
-        FOR(5){
-            printf("par[%d] = %d\n",i,par[i]);
-        }
-        j=0;    
-    }
+double m[12][12];
+double s=0.0f;
+char ch;
+cin>>ch;
+FORM(12,12){
+    cin>>m[i][j];
+    if(i>j and j+i<=10){ s+=m[i][j]; }
 }
-FOR(k){
-    printf("impar[%d] = %d\n",i,impar[i]);
-}
-FOR(j){
-    printf("par[%d] = %d\n",i,par[i]);
-}
+pcs(1);
+if(ch=='S') cout<<fx(s)<<endl;
+else if (ch=='M') cout<<fx(s/((int)((11.0*(11.0/2.0))/2)))<<endl;
 return 0;
 }

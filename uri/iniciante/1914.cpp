@@ -23,47 +23,21 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 
-void print (vector<int> a, size_t b, bool par){
-    FOR(b){
-        if(par) printf("par[%d] = %d\n",i,a[i]);
-        else printf("impar[%d] = %d\n",i,a[i]);
+int main(){
+int n,a,b;
+char n1[80], n2[80], e1[80], e2[80];
+cin>>n;
+FOR(n){
+    scanf("%s %s %s %s %d %d", n1, e1, n2, e2, &a, &b);
+    if((a+b)&1){
+        if(!strcmp(e1,"IMPAR")) puts(n1);
+        else puts(n2);
+    }
+    else{
+        if(!strcmp(e1,"PAR")) puts(n1);
+        else puts(n2);
     }
 }
 
-int main(){
-int j,k;
-vector <int> impar, par;
-impar.resize(5);
-par.resize(5);
-k=j=0;
-for(int i=0,n; i<15; i++){
-    cin>>n;
-    if(n&1){
-        impar[k%5] = n;
-        k++;
-    }
-    else{
-        par[j%5] = n;
-        j++;
-    }
-    if (k && !(k%5)){
-        FOR(5){
-            printf("impar[%d] = %d\n",i,impar[i]);
-        }
-        k=0;
-    }
-    if(j && !(j%5)){
-        FOR(5){
-            printf("par[%d] = %d\n",i,par[i]);
-        }
-        j=0;    
-    }
-}
-FOR(k){
-    printf("impar[%d] = %d\n",i,impar[i]);
-}
-FOR(j){
-    printf("par[%d] = %d\n",i,par[i]);
-}
 return 0;
 }
