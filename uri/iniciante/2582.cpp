@@ -23,14 +23,32 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef vector<int> vi;
-typedef vector<string> vstr;
+typedef vector<string> vs;
 typedef vector<double> vd;
 typedef vector<long> vl;
 typedef vector<ll> vll;
 
 int main(){
-    int n,m,l;
+    int n;
+    vs v={
+        "PROXYCITY",
+        "P.Y.N.G.",
+        "DNSUEY!",
+        "SERVERS",
+        "HOST!",
+        "CRIPTONIZE",
+        "OFFLINE DAY",
+        "SALT",
+        "ANSWER!",
+        "RAR?",
+        "WIFI ANTENNAS",
+    };
+    int a,b;
     while(cin>>n){
+        FOR(n){
+            cin>>a>>b;
+            cout<<v[a+b]<<endl;
+        }
     }
     return 0;
 }

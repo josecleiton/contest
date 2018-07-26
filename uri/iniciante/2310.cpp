@@ -9,31 +9,64 @@
 #define FORT(x,y) for(int i=x;i<y;i++)
 #define ROFT(x,y) for(int i=x-1;i>=y;i--)
 #define WHILE(n,x) while((n--)&&cin>>x)
-#define M(x,y) max(x, y)
-#define m(x,y) min(x, y)
 #define c(x) cout<<x<<endl
 #define C(x) cin>>x
-#define set(a,b) cout.precision(a); cout<<fixed<<b<<endl
+#define set(a,b) cout.precision(a); cout<<fixed<<b
 #define pcs(a) cout.precision(a)
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
+#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
+#define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
-
+typedef vector<int> vi;
+typedef vector<string> vs;
+typedef vector<double> vd;
+typedef vector<long> vl;
+typedef vector<ll> vll;
 
 int main(){
-    int n;
-    string t;
-    vector<int> s,b,a;
+    int n,h;
+    string s;
+    vd res(3);
+    vs x = {
+        "Pontos de Saque: ",
+        "Pontos de Bloqueio: ",
+        "Pontos de Ataque: "
+    };
+    cout.precision(2);
     while(cin>>n){
-        s.resize(n*6);
-        b.resize(n*6);
-        a.resize(n*6);
-        FOR(n){
-            cin>>t>>s[i]>>b[i]>>a[i]
+        vi v(n);
+        vi z(n);
+        for(int i=0; i<n*2; i++){
+            if(!(i&1)){
+                cin>>s;
+                for(int j=0; j<3; j++){
+                    cin>>h;
+                    v[j] += h;
+                }
+            }
+            else{
+                for(int j=0; j<3; j++){
+                    cin>>h;
+                    z[j] += h;
+                }
+            }
         }
+        FOR(3){
+            res[i] = (z[i]*100)/(double)v[i];
+            cout<<x[i]<<fixed<<res[i]<<" %."<<endl;
+        }
+        /*
+        *   v[j] - 100
+        *   z[j] - x
+        *   x*v[j] = 100*z[j]
+        *   x = (z[j]*100)/v[j]
+        */
+
     }
+    return 0;
 }

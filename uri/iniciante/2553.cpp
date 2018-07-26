@@ -23,14 +23,31 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef vector<int> vi;
-typedef vector<string> vstr;
+typedef vector<string> vs;
 typedef vector<double> vd;
 typedef vector<long> vl;
 typedef vector<ll> vll;
 
 int main(){
-    int n,m,l;
-    while(cin>>n){
+    int n,m;
+    string s;
+    int i;
+    bool b;
+    while(cin>>n>>m){
+        int M[m][n];
+        bool imp = false;
+        for(int i=0; i<m; i++){
+            cin>>s;
+            b=true;
+            for(int j=0; j<n; j++){
+                scanf("%d", &M[i][j]);
+                if(!M[i][j]) b=false;
+            }
+            if(b and !imp){ 
+                cout<<s<<endl; imp=true; 
+            }
+        }
+        if(!imp) cout<<"Pizza antes de FdI"<<endl;
     }
     return 0;
 }

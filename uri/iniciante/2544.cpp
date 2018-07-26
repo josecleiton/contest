@@ -23,14 +23,23 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef vector<int> vi;
-typedef vector<string> vstr;
+typedef vector<string> vs;
 typedef vector<double> vd;
 typedef vector<long> vl;
 typedef vector<ll> vll;
 
 int main(){
-    int n,m,l;
-    while(cin>>n){
+    ll a,sum;
+    int c;
+    while(cin>>a){
+        if(a==1) cout<<(--a);
+        else{
+            sum=1;
+            for(int i=1; sum<a; i++,c=i-1)
+                sum<<=1;
+            cout<<c;
+        }
+        cout<<endl;
     }
     return 0;
 }

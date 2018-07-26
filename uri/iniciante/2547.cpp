@@ -23,14 +23,20 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef vector<int> vi;
-typedef vector<string> vstr;
+typedef vector<string> vs;
 typedef vector<double> vd;
 typedef vector<long> vl;
 typedef vector<ll> vll;
 
 int main(){
-    int n,m,l;
-    while(cin>>n){
+    int n,min,max,k,count;
+    while(cin>>n>>min>>max){
+        count=0;
+        FOR(n){
+            cin>>k;
+            if(k>=min and k<=max) count++;
+        }
+        cout<<count<<endl;
     }
     return 0;
 }

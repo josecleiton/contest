@@ -23,14 +23,18 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef vector<int> vi;
-typedef vector<string> vstr;
+typedef vector<string> vs;
 typedef vector<double> vd;
 typedef vector<long> vl;
 typedef vector<ll> vll;
 
 int main(){
-    int n,m,l;
+    int n;
     while(cin>>n){
+        FOR(n){
+            scanf("%*[^\n]%*c");
+            cout<<"I am Toorg!"<<endl;
+        }
     }
     return 0;
 }

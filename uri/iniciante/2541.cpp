@@ -9,6 +9,8 @@
 #define FORT(x,y) for(int i=x;i<y;i++)
 #define ROFT(x,y) for(int i=x-1;i>=y;i--)
 #define WHILE(n,x) while((n--)&&cin>>x)
+#define M(x,y) max(x, y)
+#define m(x,y) min(x, y)
 #define c(x) cout<<x<<endl
 #define C(x) cin>>x
 #define set(a,b) cout.precision(a); cout<<fixed<<b<<endl
@@ -16,21 +18,28 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
-#define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef vector<int> vi;
-typedef vector<string> vstr;
+typedef vector<string> vs;
 typedef vector<double> vd;
 typedef vector<long> vl;
 typedef vector<ll> vll;
 
 int main(){
-    int n,m,l;
+    int n;
+    bool k;
     while(cin>>n){
+        int sum=0;
+        FOR(n){
+            cin>>k;
+            if(k==1) sum++;
+        }
+        if(sum>=(n*2)/3.0) cout<<"impeachment";
+        else cout<<"acusacao arquivada";
+        cout<<endl;
     }
     return 0;
 }

@@ -23,14 +23,31 @@ using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
 typedef vector<int> vi;
-typedef vector<string> vstr;
+typedef vector<string> vs;
 typedef vector<double> vd;
 typedef vector<long> vl;
 typedef vector<ll> vll;
 
 int main(){
-    int n,m,l;
+    int n;
+    int t,d;
     while(cin>>n){
+        vd v(n);
+        vi r;
+        FOR(n){
+            cin>>t>>d;
+            v[i]= (double)d/((double)t);
+            bool b = true;
+            for(int j=0; i and j<i; j++){
+                if(v[i]<=v[j]) {b=false;break;}
+            }
+            if(b) r.pb(i+1);
+        }
+        cout<<'1'<<endl;
+        FORT(1,r.size()){
+            cout<<r[i]<<endl;
+        }
+
     }
     return 0;
 }
