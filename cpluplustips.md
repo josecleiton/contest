@@ -41,9 +41,10 @@ Decrescente: `sort(v.rbegin(),v.rend())`
 
 ## Conjuntos
 
-### Conjunto sem ordem
+Podem ser usados se o vetor tiver valores unicos e esse valor precisar ser ordenado.
 
-`unordered_set<int> s;` Declaração
+`set<int> s` Declaração de um conjunto s 
+`unordered_set<int> s;` Declaração de um conjunto sem ordem
 `s.insert(a)` inserção em s
 
 ## Genericos
@@ -52,6 +53,7 @@ Troca entre dois objetos `swap(a,b)`
 Number of digits in N = `floor(log10(N)) + 1;`
 
 ## Matrizes
+
 diagonal `i==j`
 acima da diagonal `j>i`
 abaixo da diagonal `i>j`
