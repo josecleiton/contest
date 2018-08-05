@@ -62,3 +62,8 @@ abaixo da diagonal sec `i+j>N-1`
 cria uma matriz nxn a e preenche-na com um valor inteiro b `vector<vector<int>> a(n, vector<int>(n, b));`
 coloca toda a diagonal de uma matriz quadrada a como b `FOR(n) {a[i][i] = b}` 
 coloca toda a diagonal secundária de uma matriz quadrada a como b `FOR(n) {a[i][n-i-1] = b;}` 
+
+
+## Structs
+
+Adicionar o pré-processador `#pragma (push, 1)` e `#pragma (pop)` entre structs elimita o "arredondamento" que o compilador aplica à essas estruturas de dados.
