@@ -51,6 +51,9 @@ Podem ser usados se o vetor tiver valores unicos e esse valor precisar ser orden
 
 Troca entre dois objetos `swap(a,b)`
 Number of digits in N = `floor(log10(N)) + 1;`
+Para inicializar várias variáveis num for, crie uma struct.
+`for(struct{vector<int>::iterator it; int i;} k = {v.begin(), 0}; k.it != v.end(); k.it++, k.i++)`
+    `cout << k.i << ": " << *k.it << endl;`    
 
 ## Matrizes
 
@@ -67,3 +70,20 @@ coloca toda a diagonal secundária de uma matriz quadrada a como b `FOR(n) {a[i]
 ## Structs
 
 Adicionar o pré-processador `#pragma (push, 1)` e `#pragma (pop)` entre structs elimita o "arredondamento" que o compilador aplica à essas estruturas de dados.
+
+
+## List
+
+Não há index, todo elemento deve ser acessado pelo iterator (list<type>::iterator it = list.begin())
+list.insert(it, 100) <- insere o elemento 100 antes do iterator em questão
+list.erase(it) <- popa o elemento da lista, e retorna um iterator para o elemento anterior
+list.push_front(102) <- coloca o elemento 102 no inicio da lista
+list.pop_front() <- retira o elemento 102 da lista
+
+## Maps
+
+Acessa um elemento com complexidade O1 a partir de sua chave (map["Cleiton"], sendo "Cleiton" a chave) ou por um iterator (complexidade diferente).
+A função make_pair("Ah", 100) cria um par string, int sem a necessidade de digitar: pair<string, int>("Ah", 100)
+A função make_pair pode ser usada com o método insert. map.insert(make_par("Ah", 100)) ou map.insert(pair<string, int>("Ah", 100))
+O método map.find(key) retorna um iterator para o par, se o par estiver no map, senão retorna um iterator para o final do map (map.end())
+
