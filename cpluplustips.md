@@ -55,6 +55,8 @@ Para inicializar várias variáveis num for, crie uma struct.
 `for(struct{vector<int>::iterator it; int i;} k = {v.begin(), 0}; k.it != v.end(); k.it++, k.i++)`
     `cout << k.i << ": " << *k.it << endl;`    
 
+Funções com o mesmo nome serão diferenciadas a partir do tipo dos argumentos, ou seja, pode-se haver duas funções prints, uma recebendo string e outra um inteiro como argumento, e o compilador usará cada uma corretamente.
+
 ## Matrizes
 
 diagonal `i==j`
