@@ -57,6 +57,20 @@ Para inicializar várias variáveis num for, crie uma struct.
 
 Funções com o mesmo nome serão diferenciadas a partir do tipo dos argumentos, ou seja, pode-se haver duas funções prints, uma recebendo string e outra um inteiro como argumento, e o compilador usará cada uma corretamente.
 
+C++11 has in built algorithms for following:
+
+// are all of the elements positive?
+
+all_of(first, first+n, ispositive()); 
+
+// is there at least one positive element?
+
+any_of(first, first+n, ispositive());
+
+// are none of the elements positive?
+
+none_of(first, first+n, ispositive()); 
+
 ## Matrizes
 
 diagonal `i==j`
