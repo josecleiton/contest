@@ -54,8 +54,7 @@ void lerstrings(char* s){
     if(!s){
         s = (char*) malloc(TAM);
         if(!s) return;
-        *s='\0';
-        char h = 0;
+	memset(s, 0, TAM);
         scanf("%[^\n]", s);
         if(!strlen(s)) return;
         scanf("%*c");
