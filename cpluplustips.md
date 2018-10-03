@@ -71,6 +71,8 @@ any_of(first, first+n, ispositive());
 
 none_of(first, first+n, ispositive()); 
 
+Inicialização de ponteiros nulos = nullptr (keyword) ou `int *p = {};`
+
 ## Matrizes
 
 diagonal `i==j`
