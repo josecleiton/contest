@@ -9,9 +9,6 @@
 #define FORT(x,y) for(int i=x;i<y;i++)
 #define ROFT(x,y) for(int i=x-1;i>=y;i--)
 #define WHILE(n,x) while((n--)&&cin>>x)
-#define SORT(v) sort(v.begin(), v.end())
-#define SORTC(v, comp) sort(v.begin(), v.end(), comp)
-#define FORIT(v) for(auto& it: v)
 #define c(x) cout<<x<<endl
 #define C(x) cin>>x
 #define set(a,b) cout.precision(a); cout<<fixed<<b<<endl
@@ -30,14 +27,19 @@ typedef vector<string> vstr;
 typedef vector<double> vd;
 typedef vector<long> vl;
 typedef vector<ll> vll;
-typedef map<int, int> mii;
-typedef map<int, bool> mib;
-typedef map<char, int> mci;
-typedef map<string, int> msi;
+
+void telefonica(int n){
+    vector<string> input(n);
+    int eco = 0;
+    FOR(n) cin>>input[i];
+    sort(input.begin(), input.end());
+    FOR(n) if(i) for(int j=0; j<input[i].size() and input[i][j] == input[i-1][j]; j++, eco++);
+    cout << eco << endl;
+
+}
 
 int main(){
-    int n,m,l;
-    while(cin>>n){
-    }
+    int n;
+    while(cin>>n) telefonica(n);
     return 0;
 }

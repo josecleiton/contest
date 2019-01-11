@@ -35,9 +35,48 @@ typedef map<int, bool> mib;
 typedef map<char, int> mci;
 typedef map<string, int> msi;
 
+bool compare(const string& a, const string& b){
+    return a.size() > b.size();
+}
+
+void count(vector<string>& array){
+    int tam = array.size();
+    vector<string> result(tam);
+    const int BUCKETSIZE = 50;
+    vector<vector<string> > buckets(BUCKETSIZE);
+    int kdigit;
+    for(int i=0; i<tam; i++){
+        kdigit = array[i].size();
+        buckets[kdigit-1].push_back(array[i]);
+    }
+    int k=0;
+    FORJ(BUCKETSIZE)
+        ROF(buckets[j].size())
+            result[k++] = buckets[j][i];
+
+    ROF(tam){
+        cout<<result[i];
+        if(i>0) cout<<' ';
+    }
+    cout<<endl;
+}
+
 int main(){
-    int n,m,l;
-    while(cin>>n){
+    int n;
+    cin>>n;
+    cin.ignore();
+    stringstream ss;
+    string h;
+    FOR(n){
+        vector<string> vst;
+        getline(cin, h);
+        ss.str(h);
+        while(ss.good()){
+            ss >> h;
+            vst.push_back(h);
+        }
+        ss.clear();
+        count(vst);
     }
     return 0;
 }

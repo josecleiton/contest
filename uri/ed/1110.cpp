@@ -9,9 +9,6 @@
 #define FORT(x,y) for(int i=x;i<y;i++)
 #define ROFT(x,y) for(int i=x-1;i>=y;i--)
 #define WHILE(n,x) while((n--)&&cin>>x)
-#define SORT(v) sort(v.begin(), v.end())
-#define SORTC(v, comp) sort(v.begin(), v.end(), comp)
-#define FORIT(v) for(auto& it: v)
 #define c(x) cout<<x<<endl
 #define C(x) cin>>x
 #define set(a,b) cout.precision(a); cout<<fixed<<b<<endl
@@ -30,14 +27,41 @@ typedef vector<string> vstr;
 typedef vector<double> vd;
 typedef vector<long> vl;
 typedef vector<ll> vll;
-typedef map<int, int> mii;
-typedef map<int, bool> mib;
-typedef map<char, int> mci;
-typedef map<string, int> msi;
+
+void cartas(int n){
+    deque<int> cards(n);
+    deque<int> discard;
+    int cursor_cards = 0;
+    for(int i=0; i<n; i++)
+        cards[i] = i+1;
+    while(cards.size() >= 2){
+        discard.push_back(cards.front());
+        cards.pop_front();
+        int temp = cards.front();
+        cards.pop_front();
+        cards.push_back(temp);
+        
+    }
+    cout << "Discarded cards: ";
+    FOR(discard.size()){
+        cout << discard[i];
+        if(i != discard.size()-1) cout << ", ";
+    }
+    cout << endl;
+
+    cout << "Remaining card: ";
+    FOR(cards.size()){
+        cout << cards[i];
+        if(i != cards.size()-1) cout << ", ";
+    }
+    cout << endl;
+}
 
 int main(){
-    int n,m,l;
+    int n;
     while(cin>>n){
+        if(n) cartas(n);
+        else break;
     }
     return 0;
 }
