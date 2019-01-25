@@ -20,7 +20,7 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
+#define matrixM(n,m) vector<vector<char>> M (n, vector<char> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
@@ -38,8 +38,34 @@ typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
 int main(){
-    int n,m,l;
-    while(cin>>n){
+    int n,m,k,cnt;
+    while(cin>>n>>m){
+        matrixM(n,m);
+        vi covas(max(n,m));
+        FORM(n,m){
+            cin>>M[i][j];
+            if(M[i][j] == '.') covas[0]++;
+        }
+        for(int i=0; i<n; i++){
+            for(int j=0; j<m; j++){
+                if(M[i][j] == '.'){
+                    k = j+1;
+                    cnt=1;
+                    while(k < m and M[i][k] == '.'){
+                        covas[cnt++]++;
+                        k++;
+                    }
+                    cnt=1;
+                    k=i+1;
+                    while(k < n and M[k][j] == '.'){
+                        covas[cnt++]++;
+                        k++;
+                    }
+                }
+            }
+        }
+        for(auto &it: covas) cout<<it<<' ';
+        cout<<endl;
     }
     return 0;
 }

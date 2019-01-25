@@ -20,7 +20,7 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
+#define matrixM(n,m) vector<vector<char>> M (n, vector<char> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
@@ -37,9 +37,33 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
+void subarray(vector<ll>& arr, ll n){ 
+    unordered_map<ll, ll> summap;
+    ll sum = 0; 
+    FOR(n){ 
+        sum+=arr[i];
+        if(!arr[i]){
+            cout<<i+1<<" 1"<<endl;
+            return;
+        }
+        else if(summap.find(sum) != summap.end()){
+            cout<<summap[sum]+1<<' '<<i+1-summap[sum]<<endl;
+            return;
+        }
+        else if(!sum){
+            cout<<"1 "<<i+1<<endl;
+            return;
+        }
+        summap[sum]=i+1;
+    } 
+    cout<<"-1"<<endl;
+} 
+
 int main(){
-    int n,m,l;
+    int n,m;
+    vector<ll> arr(200050);
     while(cin>>n){
+        FOR(n) cin>>arr[i];
+        subarray(arr, n);
     }
-    return 0;
 }

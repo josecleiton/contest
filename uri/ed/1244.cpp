@@ -3,6 +3,7 @@
 #include <bits/stdc++.h>
 #define FOR(x) for(int i=0;i<x;i++)
 #define ROF(x) for(int i=x-1;i>=0;i--)
+#define ROFJ(x) for(int j=x-1;j>=0;j--)
 #define FORJ(x) for(int j=0;j<x;j++)
 #define FORQ(Q) for(int i=0;Q;i++)
 #define FORM(x,y) for(int i=0;i<x;i++) for(int j=0;j<y;j++)
@@ -35,14 +36,8 @@ typedef map<int, bool> mib;
 typedef map<char, int> mci;
 typedef map<string, int> msi;
 
-bool compare(const string& a, const string& b){
-    return a.size() > b.size();
-}
-
 void count(vector<string>& array){
-    int tam = array.size();
-    vector<string> result(tam);
-    const int BUCKETSIZE = 50;
+    const int BUCKETSIZE = 50, tam = array.size();
     vector<vector<string> > buckets(BUCKETSIZE);
     int kdigit;
     for(int i=0; i<tam; i++){
@@ -50,32 +45,30 @@ void count(vector<string>& array){
         buckets[kdigit-1].push_back(array[i]);
     }
     int k=0;
-    FORJ(BUCKETSIZE)
-        ROF(buckets[j].size())
-            result[k++] = buckets[j][i];
-
-    ROF(tam){
-        cout<<result[i];
-        if(i>0) cout<<' ';
+    ROF(BUCKETSIZE){
+        FORJ(buckets[i].size()){
+            cout << buckets[i][j];
+            if(k++<tam-1) cout<<' ';
+        }
     }
-    cout<<endl;
+    cout << endl;
 }
 
 int main(){
     int n;
     cin>>n;
     cin.ignore();
-    stringstream ss;
     string h;
     FOR(n){
         vector<string> vst;
         getline(cin, h);
-        ss.str(h);
-        while(ss.good()){
-            ss >> h;
-            vst.push_back(h);
+        int j=0;
+        FOR(h.size()+1){
+            if(h[i] == ' ' or h[i] == '\0'){
+                vst.push_back(h.substr(j, i-j));
+                j=i+1;
+            }
         }
-        ss.clear();
         count(vst);
     }
     return 0;

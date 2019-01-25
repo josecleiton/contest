@@ -35,11 +35,17 @@ typedef map<int, int> mii;
 typedef map<int, bool> mib;
 typedef map<char, int> mci;
 typedef map<string, int> msi;
-typedef pair<int, int> pii;
 
 int main(){
-    int n,m,l;
-    while(cin>>n){
+    int n,m,k;
+    list<int> fila;
+    int count = 0;
+    int hor, antihor;
+    while(cin>>n>>k>>m and n+k+m){
+        FOR(n) fila.insert(fila.end(), i+1);
+        if(count++) cout << ",  ";
+        for(auto start = fila.begin(); !fila.empty();)
     }
+    cout<<endl;
     return 0;
 }

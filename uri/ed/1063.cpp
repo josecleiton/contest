@@ -22,6 +22,7 @@
 #define pb(a) push_back(a)
 #define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
+#define TAM 27
 
 using namespace std;
 typedef long long ll;
@@ -35,11 +36,29 @@ typedef map<int, int> mii;
 typedef map<int, bool> mib;
 typedef map<char, int> mci;
 typedef map<string, int> msi;
-typedef pair<int, int> pii;
+
 
 int main(){
-    int n,m,l;
-    while(cin>>n){
+    int n, i, j;
+    vector<char> in(TAM), out(TAM);
+    while(cin>>n and n){
+        stack<char> pilha;
+        FOR(n) cin>>in[i];
+        FOR(n) cin>>out[i];
+        i=j=0;
+        while(i<n){
+            pilha.push(in[i++]);
+            cout<<'I';
+            while(!pilha.empty() and pilha.top()==out[j]){
+                pilha.pop();
+                cout<<'R';
+                j++;
+            }
+        }
+        if(!pilha.empty())
+            cout<<" Impossible";
+        cout<<endl;
     }
+    //cout<<endl;
     return 0;
 }

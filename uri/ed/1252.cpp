@@ -22,7 +22,7 @@
 #define pb(a) push_back(a)
 #define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
-
+#define MAX 10000
 using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
@@ -35,11 +35,29 @@ typedef map<int, int> mii;
 typedef map<int, bool> mib;
 typedef map<char, int> mci;
 typedef map<string, int> msi;
-typedef pair<int, int> pii;
+
+bool comp(const pair<int, int>& a, const pair<int, int>& b){
+   if(a.second < b.second) return true;
+   else if(a.second == b.second){
+      if((a.first&1) != (b.first&1)) return a.first&1;
+      else if(a.first&1) return a.first>b.first;
+      else return a.first<b.first;
+   }
+   return false;
+}
 
 int main(){
-    int n,m,l;
-    while(cin>>n){
+    int n,m;
+    vector<pair<int, int> > vetor(MAX);
+    while(cin>>n>>m and n+m){
+       cout<<n<<' '<<m<<endl;
+       FOR(n){
+         cin>>vetor[i].first;
+         vetor[i].second=vetor[i].first%m;
+         }
+       sort(vetor.begin(), vetor.begin()+n, comp);
+       FOR(n) cout<<vetor[i].first<<endl;
     }
+    cout<<n<<' '<<m<<endl;
     return 0;
 }

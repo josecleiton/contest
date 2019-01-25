@@ -22,6 +22,7 @@
 #define pb(a) push_back(a)
 #define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
+#define TAM 1024
 
 using namespace std;
 typedef long long ll;
@@ -35,11 +36,37 @@ typedef map<int, int> mii;
 typedef map<int, bool> mib;
 typedef map<char, int> mci;
 typedef map<string, int> msi;
-typedef pair<int, int> pii;
+
+vector<int> vagoes;
+
+void resolve_vagoes(vector<int>& poss){
+    int tam = poss.size();
+    stack<int> pilha;
+    int i=0, j=0;
+    while(i<tam){
+        pilha.push(vagoes[i++]);
+        while(!pilha.empty() and pilha.top() == poss[j]){
+            pilha.pop();
+            j++;
+        }
+    }
+    if(pilha.empty()) cout << "Yes" << endl;
+    else cout << "No" << endl;
+}
 
 int main(){
-    int n,m,l;
-    while(cin>>n){
+    int n, m;
+    vagoes.resize(TAM);
+    FOR(TAM) vagoes[i] = i+1;
+    vector<int> entrada;
+    while(cin>>n and n){
+        entrada.resize(n);
+        while(cin>>m and m){
+            entrada[0] = m;
+            for(int i=1; i<n; i++) cin>>entrada[i];
+            resolve_vagoes(entrada);
+        }
+        cout<<endl;
     }
     return 0;
 }
