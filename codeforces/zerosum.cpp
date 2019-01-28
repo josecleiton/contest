@@ -38,25 +38,26 @@ typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
 void subarray(vector<ll>& arr, ll n){ 
-    unordered_map<ll, ll> summap;
-    ll sum = 0; 
+    unordered_map<ll, int> imap;
+    map<int, int> summap;
+    ll sum = 0ll; 
     FOR(n){ 
         sum+=arr[i];
         if(!arr[i]){
             cout<<i+1<<" 1"<<endl;
             return;
         }
-        else if(summap.find(sum) != summap.end()){
-            cout<<summap[sum]+1<<' '<<i+1-summap[sum]<<endl;
-            return;
-        }
-        else if(!sum){
-            cout<<"1 "<<i+1<<endl;
-            return;
-        }
-        summap[sum]=i+1;
-    } 
-    cout<<"-1"<<endl;
+        else if(imap.find(sum) != imap.end())
+            summap[i+1-imap[sum]] = (imap[sum]+1);
+        else if(!sum)
+            summap[i+1] = 1;
+        imap[sum] = i+1;
+    }
+    if(!summap.empty()){
+        auto it = summap.begin();
+        cout<<it->second<<' '<<it->first<<endl;
+    }
+    else cout<<-1<<endl;
 } 
 
 int main(){

@@ -22,7 +22,7 @@
 #define pb(a) push_back(a)
 #define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
-
+ 
 using namespace std;
 typedef long long ll;
 typedef unsigned long long ull;
@@ -36,10 +36,28 @@ typedef map<int, bool> mib;
 typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
-
+ 
 int main(){
-    int n,m,l;
+    int n;
+    string str;
+    pcs(4);
     while(cin>>n){
+    	FOR(n){
+    		msi M;
+    		if(!i){
+                getline(cin, str);
+                cin.ignore();
+            }
+    		int j=0;
+    		while(getline(cin, str) and str.size()){
+                M[str]++;
+                j++;
+    		}
+    		for(auto it: M){
+    			cout<<it.first<<' '<<fx((it.second*100)/(double)j)<<endl;
+    		}
+    		if(i+1 != n) cout<<endl;
+    	}
     }
     return 0;
 }

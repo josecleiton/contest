@@ -37,9 +37,29 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
+bool compare(const pair<int, int>& a, const pair<int, int>& b){
+    return a.second < b.second or (a.second == b.second and a.first > b.first);
+}
+
 int main(){
-    int n,m,l;
-    while(cin>>n){
+    char c;
+    
+    int i=0,j;
+    string handle;
+    pair<int,int>* p;
+    while(cin>>handle){
+        if(i) cout<<endl;
+        vector<pair<int, int>> pmap(95);
+        FOR(handle.size()){
+            p = &(pmap[handle[i]-33]);
+            p->first = handle[i];
+            p->second++;
+        }
+        sort(pmap.begin(), pmap.end(), compare);
+        for(auto& it: pmap){
+            if(it.second) cout<<it.first<<' '<<it.second<<endl;
+        }
+        i++;
     }
     return 0;
 }

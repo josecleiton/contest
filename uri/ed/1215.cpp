@@ -38,8 +38,26 @@ typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
 int main(){
-    int n,m,l;
-    while(cin>>n){
+    string handle;
+    int start, end;
+    map<string, int> M;
+    while(cin>>handle){
+        FOR(handle.size()){
+            end = i;
+            while(isalpha(handle[end])){
+                handle[end] = tolower(handle[end]);
+                end++;
+            }
+            if(end != i){
+                M[handle.substr(i, end-i)]++;
+                i = end;
+            }
+        }
+    }
+    int i = 0;
+    for(auto it: M){
+        if(i++ == 5000) break;
+        cout<<it.first<<endl;
     }
     return 0;
 }
