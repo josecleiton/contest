@@ -20,7 +20,7 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<char>> M (n, vector<char> (m))
+#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
@@ -37,40 +37,35 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
-struct maxes{
-    int i{}, j{}, cnt{};
-    maxes(){
-        i=j=0;
-        cnt=INT_MIN;
-    }
-};
+int swaps;
 
-int main(){
-    int n,m,k,cnt;
-    while(cin>>n>>m){
-        matrixM(n,m);
-        vi covas(max(n,m));
-        maxes mx[2];
-        FORM(n,m){
-            cin>>M[i][j];
-            if(M[i][j] == '.') covas[0]++;
-        }
-        map<int, int, greater<int>> max_linha, max_coluna;
-        int mi=0, mj=0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(M[i][j]=='.'){
-                    mj++;
-                    if(mj > max_linha[i]) max_linha[i]=mj;
-                    if(i and M[i-1][j]=='.'){
-                        
-                    }
-                }
-                else mj=0;
+void bubbleSort(vector<int>& array, int n){
+    bool noSwap = false;
+    for(int i=n-1; i>0 and !noSwap; i--){
+        noSwap = true;
+        for(int j=0; j<i; j++){
+            if(array[j] > array[j+1]){
+                swap(array[j], array[j+1]);
+                swaps++;
+                noSwap = false;
             }
         }
-        for(auto &it: covas) cout<<it<<' ';
-        cout<<endl;
+    }
+}
+
+int main(){
+    int n,m,l;
+    vi vagoes(1000);
+    while(cin>>n){
+        FORJ(n){
+            swaps=0;
+            cin>>m;
+            FOR(m){
+                cin>>vagoes[i];
+            }
+            bubbleSort(vagoes, m);
+            cout<<"Optimal train swapping takes "<<swaps<<" swaps."<<endl;
+        }
     }
     return 0;
 }

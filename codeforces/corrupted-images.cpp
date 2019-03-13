@@ -37,39 +37,33 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
-struct maxes{
-    int i{}, j{}, cnt{};
-    maxes(){
-        i=j=0;
-        cnt=INT_MIN;
-    }
-};
+bool borda(int i, int j, int n, int m){
+    return i==0 or i==n-1 or j==0 or j==m-1;
+}
 
 int main(){
-    int n,m,k,cnt;
-    while(cin>>n>>m){
+    int n,m,l,casos,cnt;
+    cin>>casos;
+    for(int t=0; t<casos; t++){
+        cin>>n>>m;
         matrixM(n,m);
-        vi covas(max(n,m));
-        maxes mx[2];
         FORM(n,m){
             cin>>M[i][j];
-            if(M[i][j] == '.') covas[0]++;
         }
-        map<int, int, greater<int>> max_linha, max_coluna;
-        int mi=0, mj=0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(M[i][j]=='.'){
-                    mj++;
-                    if(mj > max_linha[i]) max_linha[i]=mj;
-                    if(i and M[i-1][j]=='.'){
-                        
+        cnt=0, l=0;
+        FOR(n){
+            FORJ(m){
+                if(M[i][j]=='1'){
+                    cnt++;
+                    if(borda(i, j, n, m)){
+                        l++;
                     }
                 }
-                else mj=0;
             }
         }
-        for(auto &it: covas) cout<<it<<' ';
+        if(cnt >= n*2+m*2-4)
+            cout<<(n*2+m*2-4)-l;
+        else cout<<-1;
         cout<<endl;
     }
     return 0;

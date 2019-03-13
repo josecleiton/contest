@@ -20,7 +20,7 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<char>> M (n, vector<char> (m))
+#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
@@ -37,39 +37,50 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
-struct maxes{
-    int i{}, j{}, cnt{};
-    maxes(){
-        i=j=0;
-        cnt=INT_MIN;
-    }
-};
-
 int main(){
-    int n,m,k,cnt;
-    while(cin>>n>>m){
-        matrixM(n,m);
-        vi covas(max(n,m));
-        maxes mx[2];
-        FORM(n,m){
-            cin>>M[i][j];
-            if(M[i][j] == '.') covas[0]++;
-        }
-        map<int, int, greater<int>> max_linha, max_coluna;
-        int mi=0, mj=0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(M[i][j]=='.'){
-                    mj++;
-                    if(mj > max_linha[i]) max_linha[i]=mj;
-                    if(i and M[i-1][j]=='.'){
-                        
-                    }
+    int n,m,l;
+    string s;
+    string max="2147483647";
+    size_t maxs=max.size();
+    bool error;
+    char resp[60];
+    while(getline(cin, s)){
+        error=false;
+        int j=0;
+        if(s.size()){
+            for(auto c: s){
+                if(isdigit(c)) resp[j++]=c;
+                else if(c=='l') resp[j++]='1';
+                else if(c=='o' or c=='O') resp[j++]='0';
+                else if(c!=',' and c!=' '){
+                    error=true;
+                    break;
                 }
-                else mj=0;
+            }
+            resp[j]='\0';
+            l=j;
+            if(!j){
+                error=true;
+            }
+            else{
+                j=0;
+                while(resp[j]=='0') j++;
+                if(j==l) j--;
+                unsigned long long x; 
+                try{
+                    x = stoull(resp);
+                }
+                catch(...){
+                    error=true;
+                }
+                if(error or x>numeric_limits<int>::max()) error=true;
             }
         }
-        for(auto &it: covas) cout<<it<<' ';
+        else error=true;
+        if(!error){
+            printf("%s", resp+j);
+        }
+        else cout<<"error";
         cout<<endl;
     }
     return 0;

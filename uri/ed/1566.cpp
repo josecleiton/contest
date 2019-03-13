@@ -20,7 +20,7 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<char>> M (n, vector<char> (m))
+#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
@@ -37,40 +37,36 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
-struct maxes{
-    int i{}, j{}, cnt{};
-    maxes(){
-        i=j=0;
-        cnt=INT_MIN;
+void countingSort(vi& array, int n){
+    int largest = *max_element(array.begin(), array.begin()+n), i;
+    vi temp(n);
+    vi count(largest+1);
+    for(i=0; i<n; i++)
+        count[array[i]]++;
+    for(i=1; i<=largest; i++)
+        count[i] = count[i-1]+count[i];
+    for(i=n-1; i>=0; i--){
+        temp[count[array[i]]-1] = array[i];
+        count[array[i]]--;
     }
-};
+    for(i=0; i<n; i++){
+        if(i) putchar(' ');
+        printf("%d", temp[i]);
+    }
+    putchar('\n');
+}
 
 int main(){
-    int n,m,k,cnt;
-    while(cin>>n>>m){
-        matrixM(n,m);
-        vi covas(max(n,m));
-        maxes mx[2];
-        FORM(n,m){
-            cin>>M[i][j];
-            if(M[i][j] == '.') covas[0]++;
+    int n,m,l;
+    vi vet(3000010);
+    scanf("%d", &n);
+    while(n){
+        scanf("%d", &m);
+        FOR(m){
+            scanf("%d", &vet[i]);
         }
-        map<int, int, greater<int>> max_linha, max_coluna;
-        int mi=0, mj=0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(M[i][j]=='.'){
-                    mj++;
-                    if(mj > max_linha[i]) max_linha[i]=mj;
-                    if(i and M[i-1][j]=='.'){
-                        
-                    }
-                }
-                else mj=0;
-            }
-        }
-        for(auto &it: covas) cout<<it<<' ';
-        cout<<endl;
+        countingSort(vet, m);
+        n--;
     }
     return 0;
 }

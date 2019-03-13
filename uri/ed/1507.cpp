@@ -20,7 +20,7 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<char>> M (n, vector<char> (m))
+#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
@@ -37,40 +37,51 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
-struct maxes{
-    int i{}, j{}, cnt{};
-    maxes(){
-        i=j=0;
-        cnt=INT_MIN;
-    }
-};
+int idx(char c){
+    if(islower(c)) return c-'a';
+    else return c-'A'+26;
+}
 
 int main(){
-    int n,m,k,cnt;
-    while(cin>>n>>m){
-        matrixM(n,m);
-        vi covas(max(n,m));
-        maxes mx[2];
-        FORM(n,m){
-            cin>>M[i][j];
-            if(M[i][j] == '.') covas[0]++;
-        }
-        map<int, int, greater<int>> max_linha, max_coluna;
-        int mi=0, mj=0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(M[i][j]=='.'){
-                    mj++;
-                    if(mj > max_linha[i]) max_linha[i]=mj;
-                    if(i and M[i-1][j]=='.'){
-                        
+    int n,q,index,needle;
+    string s,query;
+    map<int, vi>::iterator busca;
+    bool res;
+    cin>>n;
+    while(n--){
+        map<int, vi> M;
+        cin>>s>>q;
+        FOR(s.size()) M[s[i]].pb(i);
+        while(q--){
+            cin>>query;
+            res=true;
+            FOR(query.size()){
+                busca = M.lower_bound(query[i]);
+                if(busca != M.end() and busca->first == query[i]){
+                    index = idx(query[i]);
+                    if(!i){
+                        needle=busca->second[0];
+                    }
+                    else{
+                        auto k = upper_bound(busca->second.begin(), busca->second.end(), needle);
+                        if(k!=busca->second.end()){
+                            needle=*k;
+                        }
+                        else{
+                            res = false;
+                            break;
+                        }
                     }
                 }
-                else mj=0;
+                else{
+                    res=false;
+                    break;
+                }
             }
+            if(res) cout<<"Yes";
+            else cout<<"No";
+            cout<<endl;
         }
-        for(auto &it: covas) cout<<it<<' ';
-        cout<<endl;
     }
     return 0;
 }

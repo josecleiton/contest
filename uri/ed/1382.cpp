@@ -20,7 +20,7 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<char>> M (n, vector<char> (m))
+#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
@@ -37,40 +37,36 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
-struct maxes{
-    int i{}, j{}, cnt{};
-    maxes(){
-        i=j=0;
-        cnt=INT_MIN;
-    }
-};
-
 int main(){
-    int n,m,k,cnt;
-    while(cin>>n>>m){
-        matrixM(n,m);
-        vi covas(max(n,m));
-        maxes mx[2];
-        FORM(n,m){
-            cin>>M[i][j];
-            if(M[i][j] == '.') covas[0]++;
+    int n,t,l,cycles,ans,j;
+    cin>>t;
+    vector<pii> arr(10010);
+    bool vis[10010];
+    while(t--){
+        cin>>n;
+        memset(vis, 0, n+10);
+        FOR(n){
+            cin>>arr[i].first;
+            arr[i].second=i;
         }
-        map<int, int, greater<int>> max_linha, max_coluna;
-        int mi=0, mj=0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(M[i][j]=='.'){
-                    mj++;
-                    if(mj > max_linha[i]) max_linha[i]=mj;
-                    if(i and M[i-1][j]=='.'){
-                        
-                    }
+        sort(arr.begin(), arr.begin()+n);
+        ans=0;
+        FOR(n){
+            if(vis[i] or arr[i].second==i){
+                vis[i]=true;
+            }
+            else{
+                j=i;
+                cycles=0;
+                while(!vis[j]){
+                    vis[j]=true;
+                    j=arr[j].second;
+                    cycles++;
                 }
-                else mj=0;
+                if(cycles > 0) ans+=cycles-1;
             }
         }
-        for(auto &it: covas) cout<<it<<' ';
-        cout<<endl;
+        cout<<ans<<endl;
     }
     return 0;
 }

@@ -20,7 +20,7 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<char>> M (n, vector<char> (m))
+#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
@@ -37,40 +37,39 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
-struct maxes{
-    int i{}, j{}, cnt{};
-    maxes(){
-        i=j=0;
-        cnt=INT_MIN;
-    }
+struct proc{
+    int v, t;
 };
 
+bool operator<(const proc& thi, const proc& a){
+    return (thi.v/(double)thi.t < a.v/(double)a.t) or (thi.t > a.t);
+    /*double r[2];
+    r[0]=thi.v/(double)thi.t;
+    r[1]=a.v/(double)a.t;
+    if(r[0]<r[1]) return true;
+    else if(r[0]==r[1]) return thi.t > a.t;
+    return false;*/
+}
 int main(){
-    int n,m,k,cnt;
-    while(cin>>n>>m){
-        matrixM(n,m);
-        vi covas(max(n,m));
-        maxes mx[2];
-        FORM(n,m){
-            cin>>M[i][j];
-            if(M[i][j] == '.') covas[0]++;
+    int n,h,m,l,ans;
+    proc tmp;
+    while(cin>>n>>h){
+        ans=0;
+        priority_queue<proc> pq;
+        while(n){
+            cin>>tmp.v>>tmp.t;
+            pq.push(tmp);
+            n--;
         }
-        map<int, int, greater<int>> max_linha, max_coluna;
-        int mi=0, mj=0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(M[i][j]=='.'){
-                    mj++;
-                    if(mj > max_linha[i]) max_linha[i]=mj;
-                    if(i and M[i-1][j]=='.'){
-                        
-                    }
-                }
-                else mj=0;
+        while(!pq.empty() and h){
+            tmp=pq.top();
+            if(h-tmp.t>=0){
+                h-=tmp.t;
             }
+            else ans+=tmp.v;
+            pq.pop();
         }
-        for(auto &it: covas) cout<<it<<' ';
-        cout<<endl;
+        cout<<ans<<endl;
     }
     return 0;
 }

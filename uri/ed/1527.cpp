@@ -20,7 +20,7 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<char>> M (n, vector<char> (m))
+#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
@@ -37,40 +37,47 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
-struct maxes{
-    int i{}, j{}, cnt{};
-    maxes(){
-        i=j=0;
-        cnt=INT_MIN;
-    }
-};
-
 int main(){
-    int n,m,k,cnt;
-    while(cin>>n>>m){
-        matrixM(n,m);
-        vi covas(max(n,m));
-        maxes mx[2];
-        FORM(n,m){
-            cin>>M[i][j];
-            if(M[i][j] == '.') covas[0]++;
+    int n,m,l,p,q,a,b,ans;
+    unordered_map<int, unordered_map<int, int>>::iterator gr[2],r;
+    while(cin>>n>>m and n+m){
+        ans=0;
+        unordered_map<int, unordered_map<int, int>> guildas;
+        FOR(n){
+            cin>>p;
+            guildas[i+1][i+1]=p;
         }
-        map<int, int, greater<int>> max_linha, max_coluna;
-        int mi=0, mj=0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(M[i][j]=='.'){
-                    mj++;
-                    if(mj > max_linha[i]) max_linha[i]=mj;
-                    if(i and M[i-1][j]=='.'){
-                        
+        while(m--){
+            cin>>q>>a>>b;
+            int j=0;
+            gr[0]=gr[1]=r=guildas.end();
+            for(auto g=guildas.begin(); g!=guildas.end() and gr[1]==guildas.end(); g++){
+                for(auto it: g->second){
+                    if(it.first==1) r=g;
+                    if(it.first==a or it.first==b){
+                        gr[j++]=g;
                     }
                 }
-                else mj=0;
+            }
+            if(q==1){
+                for(auto it: gr[1]->second){
+                    gr[0]->second[it.first]=it.second;
+                }
+                guildas.erase(gr[1]);
+            }
+            else{
+                int ac[2];
+                ac[0]=ac[1]=0;
+                FOR(2){
+                    for(auto it: gr[i]->second){
+                        ac[i]+=it.second;
+                    }
+                }
+                if(ac[0]>ac[1] and gr[0]==r) ans++;
+                else if(ac[1]>ac[0] and gr[1]==r) ans++;
             }
         }
-        for(auto &it: covas) cout<<it<<' ';
-        cout<<endl;
+        cout<<ans<<endl;
     }
     return 0;
 }

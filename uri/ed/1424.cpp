@@ -20,7 +20,7 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<char>> M (n, vector<char> (m))
+#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
@@ -37,40 +37,26 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
-struct maxes{
-    int i{}, j{}, cnt{};
-    maxes(){
-        i=j=0;
-        cnt=INT_MIN;
-    }
-};
-
 int main(){
-    int n,m,k,cnt;
+    int n,m,k,v,j;
+    map<int, vi> M;
+    map<int, vi>::iterator busca;
     while(cin>>n>>m){
-        matrixM(n,m);
-        vi covas(max(n,m));
-        maxes mx[2];
-        FORM(n,m){
-            cin>>M[i][j];
-            if(M[i][j] == '.') covas[0]++;
+        FOR(n){
+            cin>>v;
+            M[v].pb(i+1);
         }
-        map<int, int, greater<int>> max_linha, max_coluna;
-        int mi=0, mj=0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(M[i][j]=='.'){
-                    mj++;
-                    if(mj > max_linha[i]) max_linha[i]=mj;
-                    if(i and M[i-1][j]=='.'){
-                        
-                    }
-                }
-                else mj=0;
+        while(m--){
+            cin>>k>>v;
+            busca = M.lower_bound(v);
+            if(busca != M.end() and busca->first == v){
+                k--;
+                if(k<busca->second.size()) cout<<busca->second[k]<<endl;
+                else cout<<0<<endl; 
             }
+            else cout<<0<<endl;
         }
-        for(auto &it: covas) cout<<it<<' ';
-        cout<<endl;
+        M.clear();
     }
     return 0;
 }

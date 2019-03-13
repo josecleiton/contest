@@ -20,10 +20,11 @@
 #define fx(a) fixed<<a
 #define gl(s) getline(cin,s)
 #define pb(a) push_back(a)
-#define matrixM(n,m) vector<vector<char>> M (n, vector<char> (m))
+#define matrixM(n,m) vector<vector<int>> M (n, vector<int> (m))
 #define matrixN(n,m) vector<vector<int>> N (n, vector<int> (m))
 
 using namespace std;
+
 typedef long long ll;
 typedef unsigned long long ull;
 typedef vector<int> vi;
@@ -37,40 +38,54 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
-struct maxes{
-    int i{}, j{}, cnt{};
-    maxes(){
-        i=j=0;
-        cnt=INT_MIN;
+ll op(ll n, int i){
+    switch(i){
+        case 1:
+            return n*2;
+        case 2:
+            return n*3;
+        case 3:
+            return n/2;
+        case 4:
+            return n/3;
+        case 5:
+            return n+7;
+        case 6:
+            return n-7;
     }
-};
+}
 
-int main(){
-    int n,m,k,cnt;
-    while(cin>>n>>m){
-        matrixM(n,m);
-        vi covas(max(n,m));
-        maxes mx[2];
-        FORM(n,m){
-            cin>>M[i][j];
-            if(M[i][j] == '.') covas[0]++;
-        }
-        map<int, int, greater<int>> max_linha, max_coluna;
-        int mi=0, mj=0;
-        for(int i=0; i<n; i++){
-            for(int j=0; j<m; j++){
-                if(M[i][j]=='.'){
-                    mj++;
-                    if(mj > max_linha[i]) max_linha[i]=mj;
-                    if(i and M[i-1][j]=='.'){
-                        
-                    }
-                }
-                else mj=0;
+ll height(const ll n){
+    return (ll) ceil(log(n)/log(6)-1);
+}
+
+ll bfs(const ll n, const ll m){
+    queue<pair<ll, ll>> q;
+    q.push(make_pair(-1, n));
+    pair<ll, ll> front;
+    register ll h, ins=0;
+    while(!q.empty()){
+        front = q.front();
+        if(front.second == m)
+            return front.first+1;
+        if(front.second <= 200000){
+            for(int i=1; i<=6; i++){
+                h = height(++ins);
+                q.push(make_pair(h, op(front.second, i)));
             }
         }
-        for(auto &it: covas) cout<<it<<' ';
-        cout<<endl;
+        else ins+=6;
+        q.pop();
+    }
+
+    return numeric_limits<ll>::max();
+
+}
+
+int main(){
+    ll n,m,l;
+    while(cin>>n>>m){
+        cout << bfs(n,m) << endl;
     }
     return 0;
 }
