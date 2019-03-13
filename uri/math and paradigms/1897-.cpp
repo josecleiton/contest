@@ -38,7 +38,7 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
-ll op(ll n, int i){
+constexpr ll op(ll n, int i){
     switch(i){
         case 1:
             return n*2;
@@ -55,8 +55,8 @@ ll op(ll n, int i){
     }
 }
 
-ll height(const ll n){
-    return (ll) ceil(log(n)/log(6)-1);
+constexpr ll height(const ll n){
+    return ceil(log(n)/log(6)-1);
 }
 
 ll bfs(const ll n, const ll m){
@@ -64,6 +64,7 @@ ll bfs(const ll n, const ll m){
     q.push(make_pair(-1, n));
     pair<ll, ll> front;
     register ll h, ins=0;
+    
     while(!q.empty()){
         front = q.front();
         if(front.second == m)
