@@ -13,7 +13,9 @@
 #define MAP(t1, t2, ord) map<t1, t2, ord<t1>>
 #define UMAP(t1, t2) unordered_map<t1, t2>
 #define matrix(name, type, n, m) vector<vector<type>> name (n, vector<type> (m))
+#define PQ(name, type, ord) priority_queue<type, deque<type>, ord<type>> name
 using namespace std;
+typedef vector<int> vi;
 typedef long long ll;
 typedef vector<ll> vll;
 typedef vector<string> vstr;
@@ -21,7 +23,19 @@ typedef vector<bool> vbit;
 typedef pair<ll, ll> pii;
 typedef vector<double> vd;
 
+/*
+class Comp {
+public:
+    bool operator() (const type& a, const type& b) { // COMPARADOR ESTRITO PARA PRIORITY_Q, UMAP ETC
+        return true;
+    }
+}
+*/
+
 int main(){
+    ios::sync_with_stdio(0);
+    cin.tie(0);
+
     ll t,n,m,l;
     while(cin>>t){
     }
