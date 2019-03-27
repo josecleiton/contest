@@ -37,12 +37,30 @@ typedef map<char, int> mci;
 typedef map<string, int> msi;
 typedef pair<int, int> pii;
 
+// COMPLEXIDADE = O(N*M)
+int lcs(string& p, string& q) {
+    const auto n = p.size(), m = q.size();
+    matrixN(n+1, m+1);
+    int resp = 0;
+    for(int i=0; i<=n; i++) {
+        for(int j=0; j<=m; j++) {
+            if(!(i*j))
+                N[i][j] = 0;
+            else if(p[i-1] == q[j-1]) {
+                N[i][j] = 1 + N[i-1][j-1];
+                resp = max(resp, N[i][j]);
+            }
+            else N[i][j] = 0;
+        }
+    }
+    return resp;
+}
+
 int main(){
     string s1, s2;
     int k;
     while(getline(cin, s1) and getline(cin, s2)){
-        map<int, int, greater<int>> M;
-        cout<<M.begin()->first<<endl;
+        cout<<lcs(s1, s2)<<endl;
     }
     return 0;
 }

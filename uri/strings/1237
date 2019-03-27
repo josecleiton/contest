@@ -2,3 +2,11 @@ Find the longest common substring
 The substring can be any part of the String
 If there is no common substring, return 0
 The search is case sensitive
+abcdef
+cdofhij
+TWO
+FOUR
+abracadabra
+open
+Hey This java is hot
+Java is a new paradigm

@@ -6,16 +6,14 @@
 #define pcs(a) cout.precision(a)
 #define fx(a) fixed << a
 #define FOR(i, a) for (int i = 0; i < a; i++)
-#define PARA(i, k, n) for (int i = k; i < n; i++)
-#define ROF(i, a) for (int i = a - 1; i >= 0; i--)
+#define PARA(i, a, k, n) for (int i = k; i < n; i++)
 #define FORIT(it, c) for (auto it = c.begin(); it != c.end(); it++)
-#define pb emplace_back
+#define pb push_back
 #define MAP(t1, t2, ord) map<t1, t2, ord<t1>>
 #define UMAP(t1, t2) unordered_map<t1, t2>
 #define matrix(name, type, n, m) vector<vector<type>> name(n, vector<type>(m))
 #define PQ(name, type, ord) priority_queue<type, deque<type>, ord<type>> name
-#define mkp(a, b) make_pair(a, b)
-
+#define ROF(i, a) for (int i = a - 1; i >= 0; i--)
 using namespace std;
 typedef vector<int> vi;
 typedef int64_t ll;
@@ -42,14 +40,31 @@ MODULAR ARITHMETIC
 */
 
 int main() {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
   int ct;
-  char c;
-  ll n, m, l;
+  ll n, m, lines;
   string s;
+  int c;
+  double f;
+  char str[11000];
+  while (scanf("%d", &ct) == 1) {
+    while(ct--) {
+      unordered_map<char, double> M;
+      double ans = 0.0;
+      scanf("%lld", &n);
+      while(n--){
+        scanf("%d%lf", &c, &f);
+        M[c] = f/100.0;
+      }
+      scanf("%lld", lines);
+      while(lines--) {
+        scanf("%[^\n]%*c", str);
+        for(int i=0; str[i]; i++){
+          ans += M[str[i]];
+        }
+      }
 
-  while (scanf("%lld", &ct) != EOF) {
+      printf("%.2lf$\n", ans);
+    }
   }
   return 0;
 }
