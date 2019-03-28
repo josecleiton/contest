@@ -1,13 +1,17 @@
 // TEMPLATE COM MACROS PARA OS CONTESTS
 // compile usando: g++ -std=c++11 -lm -O3 arquivo.cpp
 #include <bits/stdc++.h>
-#define FORM(x, y) for (int i = 0; i < x; i++) for (int j = 0; j < y; j++)
-#define set(a, b) cout.precision(a); cout << fixed << b << endl
+#define FORM(x, y)                                                             \
+    for (int i = 0; i < x; i++)                                                  \
+    for (int j = 0; j < y; j++)
+#define set(a, b)                                                              \
+  cout.precision(a);                                                           \
+  cout << fixed << b << endl
 #define pcs(a) cout.precision(a)
 #define fx(a) fixed << a
 #define FOR(i, a) for (int i = 0; i < a; i++)
-#define PARA(i, k, n) for(int i=k; i<n; i++)
-#define PARAR(i, k, n) for(int i=n-1; i>=k; i--)
+#define PARA(i, k, n) for (int i = k; i < n; i++)
+#define PARAR(i, k, n) for (int i = n - 1; i >= k; i--)
 #define FORIT(it, c) for (auto it = c.begin(); it != c.end(); it++)
 #define pb push_back
 #define MAP(t1, t2, ord) map<t1, t2, ord<t1>>
@@ -43,10 +47,10 @@ MODULAR ARITHMETIC
 */
 
 int main() {
-	/*
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-  */
+  /*
+ios::sync_with_stdio(0);
+cin.tie(0);
+*/
   int ct;
   char s[80];
   int capacity, n, k, ans;
@@ -54,79 +58,77 @@ int main() {
   car tmp;
 
   while (scanf("%d", &ct) != EOF) {
-  	while(ct--) {
-  		queue<car> left, right;
-  		deque<car> ferry;
-  		scanf("%d%d", &capacity, &n);
-  		capacity *= 100;
-      l=1;
-  		while(n--) {
-  			scanf("%d%s", &k, s);
-  			if(!strcmp(s, "left")) {
-  				left.push(mkp(k, 'l'));
-  				if(!l){
-  					right.push(mkp(0, 0));
-  					l=1;
-  				}
-  			}
-  			else {
-  				right.push(mkp(k, 'r'));
-  				if(l) {
-  					left.push(mkp(0, 0));
-  					l = 0;
-  				}
-  			}
-  		}
-  		// FIM DA ENTRADA
-  		ans = 1;
-  		l = 1;
-  		while(ferry.size() or left.size() or right.size()) {
-  			if(ans&1) {
-				// RETIRA OS QUE ENTRARAM PELA DIREITA
-				while(ferry.size() and ferry.back().second == 'r') {
-					capacity += ferry.back().first;
-					ferry.pop_back();
-				}
-				// COLOCA CARROS À ESQUERDA
-				while(left.size()) {
-					tmp = left.front();
-          if(! tmp.first){
-            left.pop();
-            break;
+    while (ct--) {
+      queue<car> left, right;
+      deque<car> ferry;
+      scanf("%d%d", &capacity, &n);
+      capacity *= 100;
+      l = 1;
+      while (n--) {
+        scanf("%d%s", &k, s);
+        if (!strcmp(s, "left")) {
+          left.push(mkp(k, 'l'));
+          if (!l) {
+            right.push(mkp(0, 0));
+            l = 1;
           }
-					if(capacity - tmp.first > 0) { // CARRO COUBE
-						ferry.push_front(tmp);
-						capacity -= tmp.first;
-						left.pop();
-					}
-					else break;
-				}
-  			}
-  			else { // FERRY ESTÁ NA DIREITA
-				// RETIRA OS QUE ENTRARAM PELA ESQUERDA
-				while(ferry.size() and ferry.front().second == 'l') {
-					capacity += ferry.front().first;
-					ferry.pop_front();
-				}
-				// COLOCA CARROS À DIREITA
-				while(right.size()) {
-					tmp = right.front();
-          if(! tmp.first) {
-            right.pop();
-            break;
+        } else {
+          right.push(mkp(k, 'r'));
+          if (l) {
+            left.push(mkp(0, 0));
+            l = 0;
           }
-					if(capacity - tmp.first > 0) { // CARRO COUBE
-						ferry.pb(tmp);
-						capacity -= tmp.first;
-						right.pop();
-					}
-					else break;
-				}
-  			}
+        }
+      }
+      // FIM DA ENTRADA
+      ans = 1;
+      l = 1;
+      while (ferry.size() or left.size() or right.size()) {
+        if (ans & 1) {
+          // RETIRA OS QUE ENTRARAM PELA DIREITA
+          while (ferry.size() and ferry.back().second == 'r') {
+            capacity += ferry.back().first;
+            ferry.pop_back();
+          }
+          // COLOCA CARROS À ESQUERDA
+          while (left.size()) {
+            tmp = left.front();
+            if (!tmp.first) {
+              left.pop();
+              break;
+            }
+            if (capacity - tmp.first > 0) { // CARRO COUBE
+              ferry.push_front(tmp);
+              capacity -= tmp.first;
+              left.pop();
+            } else
+              break;
+          }
+        } else { // FERRY ESTÁ NA DIREITA
+          // RETIRA OS QUE ENTRARAM PELA ESQUERDA
+          while (ferry.size() and ferry.front().second == 'l') {
+            capacity += ferry.front().first;
+            ferry.pop_front();
+          }
+          // COLOCA CARROS À DIREITA
+          while (right.size()) {
+            tmp = right.front();
+            if (!tmp.first) {
+              right.pop();
+              break;
+            }
+            if (capacity - tmp.first > 0) { // CARRO COUBE
+              ferry.pb(tmp);
+              capacity -= tmp.first;
+              right.pop();
+            } else
+              break;
+          }
+        }
         ans++;
-  		}
-  		printf("%d\n", ans-2);
-  	}
+      }
+      printf("%d\n", ans - 2);
+    }
   }
   return 0;
 }
