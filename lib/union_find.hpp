@@ -7,7 +7,7 @@ class UnionFind {
 private:
   vi p, rank;
 public:
-  UnionFind(int N) {
+  void reset(int N) {
     rank.assign(N, 0);
     p.resize(N);
     FOR(i, N) p[i] = i;
