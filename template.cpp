@@ -28,6 +28,8 @@ typedef vector<string> vstr;
 typedef vector<bool> vbit;
 typedef pair<ll, ll> pii;
 typedef vector<double> vd;
+typedef unordered_map<int, unordered_map<int, bool>> _graph;
+typedef unordered_map<int, unordered_map<int, int>> _wgraph;
 
 /*
 class Comp {
