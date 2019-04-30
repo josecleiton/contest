@@ -1,20 +1,23 @@
 // TEMPLATE COM MACROS PARA OS CONTESTS
 // compile usando: g++ -std=c++11 -lm -O3 arquivo.cpp
 #include <bits/stdc++.h>
-#define FORM(x, y) for (int i = 0; i < x; i++) for (int j = 0; j < y; j++)
 #define set(a, b) cout.precision(a); cout << fixed << b << endl
 #define pcs(a) cout.precision(a)
 #define fx(a) fixed << a
 #define FOR(i, a) for (int i = 0; i < a; i++)
-#define PARA(i, a, k, n) for (int i = k; i < n; i++)
+#define PARA(i, k, n) for (int i = k; i < n; i++)
+#define ROF(i, a) for (int i = a - 1; i >= 0; i--)
 #define FORIT(it, c) for (auto it = c.begin(); it != c.end(); it++)
 #define pb emplace_back
 #define pf emplace_front
+#define pob pop_back
+#define pof pop_front
 #define MAP(t1, t2, ord) map<t1, t2, ord<t1>>
 #define UMAP(t1, t2) unordered_map<t1, t2>
 #define matrix(name, type, n, m) vector<vector<type>> name(n, vector<type>(m))
 #define PQ(name, type, ord) priority_queue<type, deque<type>, ord<type>> name
-#define ROF(i, a) for (int i = a - 1; i >= 0; i--)
+#define mkp(a, b) make_pair(a, b)
+
 using namespace std;
 typedef vector<int> vi;
 typedef int64_t ll;
@@ -41,31 +44,33 @@ MODULAR ARITHMETIC
 */
 
 int main() {
-  ios::sync_with_stdio(0);
-  cin.tie(0);
-
-  int ct;
+  //ios::sync_with_stdio(0);
+  //cin.tie(0);
+  int day, ind;
+  double h,d,f,s,u,jaiminho;
   char c;
-  double k;
-  ll n, m, l;
-  string s;
-  cin>>ct;
-  while(ct--) {
-    unordered_map<char, double> M;
-    double ans = 0.0;
-    cin>>n;
-    while(n--) {
-      cin>>c>>m;
-      M[c] = m/100.0;
-    }
-    cin>>l;
-    cin.ignore();
-    while(l--) {
-      getline(cin, s);
-      for(auto ch: s)
-        ans += M[ch];
-    }
-    printf("%.2lf$\n", ans);
+  while (scanf("%lf%lf%lf%lf", &h, &u, &d, &f) and h) {
+  	day = 1;
+  	s = 0.0;
+		jaiminho = (f/100.0)*u;
+  	while(true) {
+  		// DIA
+  		if(!signbit(u))
+  			s += u; // SALTO
+  		if(s > h) {
+				printf("success on day %d\n", day);
+  			break;
+  		}
+  		// NOITE
+  		s -= d;
+  		if(signbit(s)) {
+				printf("failure on day %d\n", day);
+  			break;
+  		}
+  		// DIA TERMINOU = APLICA FADIGA
+  		u -= jaiminho;
+  		day++;
+  	}
   }
   return 0;
 }

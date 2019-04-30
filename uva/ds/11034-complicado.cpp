@@ -69,8 +69,16 @@ cin.tie(0);
         scanf("%d%s", &k, s);
         if (!strcmp(s, "left")) {
           left.push(mkp(k, 'l'));
+          if (!l) {
+            right.push(mkp(0, 0));
+            l = 1;
+          }
         } else {
           right.push(mkp(k, 'r'));
+          if (l) {
+            left.push(mkp(0, 0));
+            l = 0;
+          }
         }
       }
       // FIM DA ENTRADA
@@ -85,6 +93,10 @@ cin.tie(0);
           // COLOCA CARROS À ESQUERDA
           while (left.size()) {
             tmp = left.front();
+            if (!tmp.first) {
+              left.pop();
+              break;
+            }
             if (capacity - tmp.first >= 0) { // CARRO COUBE
               ferry.pf(tmp);
               capacity -= tmp.first;
@@ -101,6 +113,10 @@ cin.tie(0);
           // COLOCA CARROS À DIREITA
           while (right.size()) {
             tmp = right.front();
+            if (!tmp.first) {
+              right.pop();
+              break;
+            }
             if (capacity - tmp.first >= 0) { // CARRO COUBE
               ferry.pb(tmp);
               capacity -= tmp.first;
