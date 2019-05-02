@@ -5,12 +5,15 @@
 using namespace std;
 typedef vector<int> vi;
 
+
+vi A;
+
 class SegmentTree {
 private:
-  vi st, lazy, A;
+  vi st, lazy;
   long long n;
-  int left(int p) { return p << 1; }
-  int right(int p) { return (p << 1) | 1; }
+  int left(int p) { return p << 1; } // PODEM SER CONSTEXPR OU MACROS 
+  int right(int p) { return (p << 1) | 1; } // SE DESEMPENHO FOR UM PROBLEMA
 
   void build(int p, int L, int R) { 
     lazy[p] = 0;
@@ -21,16 +24,15 @@ private:
       int mid = (L+R)>>1;
       build(left(p), L, mid);
       build(right(p), mid+1, R);
-      auto left_val = st[left(p)];
-      auto right_val = st[right(p)];
-      st[p] = combine(left_val, right_val);
+      st[p] = combine(st[left(p)], st[right(p)]);
     }
   }
 
   void propagate(int p, int L, int R) {
-    st[p] += lazy[p];
+    st[p] += (R-L+1)*lazy[p];
     if(L != R) {
-      lazy[left(p)] = lazy[right(p)] = lazy[p];
+      lazy[left(p)] += lazy[p];
+      lazy[right(p)] += lazy[p];
     }
     lazy[p] = 0;
   }
@@ -39,7 +41,7 @@ private:
     if(lazy[p]) propagate(p, L, R);
 	  if(startRange > R or endRange < L) return; // não há sobreposição
 	  if(startRange <= L and endRange >= R) { // sobreposição total
-      st[p] = val;
+      st[p] +=  (R-L+1)*val;
 			if(L != R) {
 				lazy[left(p)] += val;
         lazy[right(p)] += val;
@@ -54,10 +56,10 @@ private:
     }
   }
   // FUNÇÃO QUE ESCOLHERÁ O QUE FICA NO NÓ 
-  // ABAIXO TEMOS UMA FUNÇÃO QUE ESCOLHE O MENOR INT
-  // OU SEJA ESSA ST RESPONDE A UMA RANGE MINIMUM QUERY (RMQ)
-  int combine(int left_val, int right_val) { 
-    return left_val + right_val;
+  // ABAIXO TEMOS UMA FUNÇÃO DE SOMA 
+  // OU SEJA ESSA ST RESPONDE A UMA RANGE SUM
+  int combine(int left_val, int right_val) {  // PODE SER UM MACRO OU CONSTEXPR
+    return left_val + right_val;               // SE DESEMPENHO FOR UM PROBLEMA
   }
 
   int query(int p, int L, int R, int i, int j) {
@@ -78,7 +80,6 @@ public:
   }
   void reset(const int& _n) {
     n = _n;
-    //pair<int, int> tmp {0, 0};
     build(1, 0, n-1);
   }
   int query(int i, int j) { return query(1, 0, n-1, i, j); }

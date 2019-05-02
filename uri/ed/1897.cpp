@@ -23,41 +23,57 @@ using namespace std;
 typedef vector<int> vi;
 typedef int64_t ll;
 typedef unsigned long long ull;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-typedef vector<pii> vii;
 typedef vector<ll> vll;
-typedef vector<bool> vbit;
 typedef vector<string> vstr;
+typedef vector<bool> vbit;
+typedef pair<ll, ll> pii;
 typedef vector<double> vd;
 typedef unordered_map<int, unordered_map<int, bool>> _graph;
 typedef unordered_map<int, unordered_map<int, int>> _wgraph;
 
-/*
-class Comp {
-public:
-    bool operator() (const type& a, const type& b) { // COMPARADOR ESTRITO PARA
-PRIORITY_Q, UMAP ETC return true;
-    }
+int op(const int& n, const int& i) {
+	switch (i) {
+		case 0: 
+			return n*2;
+		case 1:
+			return n*3;
+		case 2:
+			return n/2;
+		case 3:
+			return n/3;
+		case 4:
+			return n+7;
+		case 5:
+			return n-7;
+	}
 }
 
-MODULAR ARITHMETIC
-( a + b) % c = ( ( a % c ) + ( b % c ) ) % c
-( a * b) % c = ( ( a % c ) * ( b % c ) ) % c
-( a – b) % c = ( ( a % c ) – ( b % c ) ) % c
-
-*/
+int resolve(const int& n, const int& m) {
+	if(n==m) return 0;
+	queue<pair<int, int>> fila;
+	pair<int, int> fila_front;
+	fila.push(mkp(n, 0));
+	while(fila.size()) {
+		fila_front = fila.front();
+		if(fila_front.first == m) {
+			return fila_front.second;
+		}
+		FOR(i, 6) {
+			fila.push(mkp(op(fila_front.first, i), fila_front.second+1));
+		}
+		fila.pop();
+	}
+}
 
 int main() {
   //ios::sync_with_stdio(0);
   //cin.tie(0);
-  int ct;
+  int n,m;
   //char c;
   //ll n, m, l;
   //int n, m, l;
   //string s;
-
-  while (scanf("%d", &ct) != EOF) {
-  }
+  scanf("%d%d", &n,&m);
+  printf("%d\n", resolve(n, m));
   return 0;
 }
