@@ -1,0 +1,7 @@
+6
+PUSH 2
+PUSH 3
+PUSH 2
+MIN
+POP
+MIN
