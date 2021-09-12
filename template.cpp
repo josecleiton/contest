@@ -1,7 +1,9 @@
 // TEMPLATE COM MACROS PARA OS CONTESTS
 // compile usando: g++ -std=c++11 -lm -O3 arquivo.cpp
 #include <bits/stdc++.h>
-#define SET(a, b) cout.precision(a); cout << fixed << b << endl
+#define SET(a, b)                                                              \
+  cout.precision(a);                                                           \
+  cout << fixed << b << endl
 #define PCS(a) cout.precision(a)
 #define FX(a) fixed << a
 #define FOR(i, a) for (int i = 0; i < a; i++)
@@ -15,23 +17,23 @@
 #define MAP(t1, t2, ord) map<t1, t2, ord<t1>>
 #define UMAP(t1, t2) unordered_map<t1, t2>
 #define MATRIX(name, type, n, m) vector<vector<type>> name(n, vector<type>(m))
-#define PQ( type, ord) priority_queue<type, deque<type>, ord<type>>
+#define PQ(type, ord) priority_queue<type, deque<type>, ord<type>>
 #define mkp(a, b) make_pair(a, b)
 #define TAM
 
 using namespace std;
-typedef vector<int> vi;
-typedef int64_t ll;
-typedef unsigned long long ull;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-typedef vector<pii> vii;
-typedef vector<ll> vll;
-typedef vector<bool> vbit;
-typedef vector<string> vstr;
-typedef vector<double> vd;
-typedef unordered_map<int, unordered_map<int, bool>> _graph;
-typedef unordered_map<int, unordered_map<int, int>> _wgraph;
+using vi = vector<int>;
+using ll = int64_t;
+using ull = unsigned long long;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
+using vii = vector<pii>;
+using vll = vector<ll>;
+using vbit = vector<bool>;
+using vstr = vector<string>;
+using vd = vector<double>;
+using _graph = unordered_map<int, unordered_map<int, bool>>;
+using _wgraph = unordered_map<int, unordered_map<int, int>>;
 
 /*
 class Comp {
@@ -49,13 +51,13 @@ MODULAR ARITHMETIC
 */
 
 int main() {
-  //ios::sync_with_stdio(0);
-  //cin.tie(0);
+  // ios::sync_with_stdio(0);
+  // cin.tie(0);
   int ct;
-  //char c;
-  //ll n, m, l;
-  //int n, m, l;
-  //string s;
+  // char c;
+  // ll n, m, l;
+  // int n, m, l;
+  // string s;
 
   while (scanf("%d", &ct) != EOF) {
   }
