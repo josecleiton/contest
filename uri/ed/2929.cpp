@@ -60,37 +60,45 @@ int main() {
   string str;
 
   cin >> n;
-  auto bst = map<ll, bool>();
+
+  auto pq = priority_queue<ll, vector<ll>, greater<ll>>();
   auto umap = unordered_map<ll, ll>();
   auto s = stack<ll>();
   FOR(i, n) {
     cin >> str;
 
-    if (str == "PUSH") {
+    if (str[1] == 'U') {
       cin >> v;
-      s.emplace(v);
-      bst.insert({s.top(), true});
-      umap[s.top()]++;
+      s.push(v);
+      pq.push(v);
+      umap[v]++;
       continue;
     }
 
-    if (str == "MIN") {
-      if (!s.empty()) {
-        cout << bst.begin()->first << '\n';
-      } else {
+    if (str[1] == 'I') {
+      while (!pq.empty()) {
+        auto top = pq.top();
+        if (umap[top]) {
+          cout << top << '\n';
+          break;
+        } else {
+          pq.pop();
+        }
+      }
+      if (pq.empty()) {
         cout << "EMPTY\n";
       }
       continue;
     }
 
-    if (str == "POP") {
+    if (str[1] == 'O') {
       if (!s.empty()) {
-        if (umap[s.top()] <= 1) {
-          umap.erase(s.top());
-          bst.erase(s.top());
-        } else {
-          umap[s.top()]--;
+        auto it = umap.find(s.top());
+
+        if (it->second >= 1) {
+          it->second--;
         }
+
         s.pop();
       } else {
         cout << "EMPTY\n";
