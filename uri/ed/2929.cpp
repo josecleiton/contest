@@ -1,5 +1,3 @@
-// TEMPLATE COM MACROS PARA OS CONTESTS
-// compile usando: g++ -std=c++11 -lm -O3 arquivo.cpp
 #include <bits/stdc++.h>
 #define SET(a, b)                                                              \
   cout.precision(a);                                                           \
@@ -22,18 +20,18 @@
 #define TAM
 
 using namespace std;
-typedef vector<int> vi;
-typedef int64_t ll;
-typedef unsigned long long ull;
-typedef pair<int, int> pii;
-typedef pair<ll, ll> pll;
-typedef vector<pii> vii;
-typedef vector<ll> vll;
-typedef vector<bool> vbit;
-typedef vector<string> vstr;
-typedef vector<double> vd;
-typedef unordered_map<int, unordered_map<int, bool>> _graph;
-typedef unordered_map<int, unordered_map<int, int>> _wgraph;
+using vi = vector<int>;
+using ll = int64_t;
+using ull = unsigned long long;
+using pii = pair<int, int>;
+using pll = pair<ll, ll>;
+using vii = vector<pii>;
+using vll = vector<ll>;
+using vbit = vector<bool>;
+using vstr = vector<string>;
+using vd = vector<double>;
+using _graph = unordered_map<int, unordered_map<int, bool>>;
+using _wgraph = unordered_map<int, unordered_map<int, int>>;
 
 /*
 class Comp {
@@ -51,59 +49,56 @@ MODULAR ARITHMETIC
 */
 
 int main() {
-  // ios::sync_with_stdio(0);
-  // cin.tie(0);
+   ios::sync_with_stdio(0);
+   cin.tie(0);
   int ct;
   // char c;
-  ll n, v;
+  ll n, m, l;
   // int n, m, l;
-  string str;
+  string s;
 
-  cin >> n;
+ const unordered_map<string, int>& command = {{"MIN", 1}, {"POP", 2}, {"PUSH", 3}};
 
-  auto pq = priority_queue<ll, vector<ll>, greater<ll>>();
-  auto umap = unordered_map<ll, ll>();
-  auto s = stack<ll>();
-  FOR(i, n) {
-    cin >> str;
+  while (cin >> n) {
+    stack<int> nums;
+    
+    stack<int> mins;
 
-    if (str[1] == 'U') {
-      cin >> v;
-      s.push(v);
-      pq.push(v);
-      umap[v]++;
-      continue;
-    }
+    FOR(i, n) {
+      cin >> s;
 
-    if (str[1] == 'I') {
-      while (!pq.empty()) {
-        auto top = pq.top();
-        if (umap[top]) {
-          cout << top << '\n';
-          break;
-        } else {
-          pq.pop();
-        }
-      }
-      if (pq.empty()) {
-        cout << "EMPTY\n";
-      }
-      continue;
-    }
-
-    if (str[1] == 'O') {
-      if (!s.empty()) {
-        auto it = umap.find(s.top());
-
-        if (it->second >= 1) {
-          it->second--;
+      if(command.at(s) == 1) {
+        if(mins.size() + nums.size()) {
+          cout << (mins.size() ? mins.top() : nums.size()) << '\n';
+          continue;
         }
 
-        s.pop();
-      } else {
         cout << "EMPTY\n";
+        continue;
+      } 
+
+      if(command.at(s) == 2) {
+        if(nums.empty()) {
+          cout << "EMPTY\n";
+          continue;
+        }
+
+        if(mins.size() && nums.top() == mins.top()) {
+          mins.pop();
+        }
+
+        nums.pop();
+
+        continue;
       }
-      continue;
+
+      cin >> ct;
+      nums.push(ct);
+
+      if(mins.empty() ||ct <= mins.top()) {
+       mins.push(ct);
+      }
+      
     }
   }
   return 0;
