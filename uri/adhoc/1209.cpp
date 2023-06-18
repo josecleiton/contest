@@ -49,15 +49,12 @@ MODULAR ARITHMETIC
 */
 
 int main() {
-  ios_base::sync_with_stdio(false);
-  cin.tie(0);
-  
   int n, m, k, currentGrau, u,v, printed, max;
   bool visited[TAM];
   int grau[TAM];
   auto net = _graph();
 
-  while(cin >> n >> m >> k) {
+  while(scanf("%d%d%d", &n,&m,&k) != EOF) {
     memset(visited, 0, sizeof(bool) * n);
     memset(grau, 0, sizeof(int) * n);
     
@@ -68,7 +65,8 @@ int main() {
     }
     
     FOR(i, m) {
-      cin >> u >> v; 
+      scanf("%d%d", &u, &v);
+      
       net[u][v] = true;
       net[v][u] = true;
 
@@ -112,16 +110,16 @@ int main() {
       }
 
       if(printed++) {
-        cout << ' ';
+        putchar(' ');
       }
 
-      cout << v;
+      printf("%d", v);
     }
 
     if(printed) {
-      cout << '\n';
+      putchar('\n');
     } else {
-      cout << "0\n";
+      printf("0\n");
     }
   }
 
